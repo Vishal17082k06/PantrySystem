@@ -1,0 +1,105 @@
+/* ---------- top bar ---------- */
+.top {
+  background: var(--ink);
+  color: #fff;
+}
+
+.top__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 12px var(--gutter);
+}
+
+.brand {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.top__stat {
+  color: #c7d2ea;
+  font-size: var(--step--1);
+}
+
+.top__stat span {
+  color: var(--saffron);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  max-width: 760px;
+  padding: clamp(28px, 6vw, 56px) 0 clamp(20px, 3vw, 28px);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 6.5vw, 4.1rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.hero__mark {
+  padding: 0 0.12em;
+  margin: 0 -0.04em;
+  background: linear-gradient(to top, var(--saffron) 0 38%, transparent 38%);
+  color: inherit;
+}
+
+.hero__lead {
+  max-width: 54ch;
+  margin-top: 14px;
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+}
+
+/* ---------- two-column body ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  align-items: start;
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.layout > .controls {
+  position: sticky;
+  top: 16px;
+}
+
+.foot {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 40px;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .layout > .controls {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .top__stat {
+    display: none;
+  }
+}

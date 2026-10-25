@@ -14,7 +14,25 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## Run the app
+## Run the React app (recommended UI)
+
+Needs Node 18+ (built with Node 22).
+
+```bash
+cd frontend
+npm install
+npm run build        # creates frontend/dist
+cd ..
+python -m uvicorn src.api:app --port 8000
+```
+
+Open http://localhost:8000. FastAPI serves both the JSON API (`/api/...`) and the built React app.
+
+**Developing the UI** (hot reload): run the API as above, then in a second terminal `cd frontend && npm run dev` and open http://localhost:5173. Vite forwards `/api` calls to port 8000.
+
+If port 8000 is already in use on your machine, pick another (`--port 8010`) and open that port instead. For hot reload, change the proxy target in `frontend/vite.config.js` to match.
+
+## Run the Streamlit app (original UI, still works)
 
 ```bash
 streamlit run app.py
@@ -28,7 +46,7 @@ Open the URL Streamlit prints (usually http://localhost:8501).
 python -m pytest
 ```
 
-40 tests cover normalization, ranking, diet tags, substitutions, explanations and dataset consistency.
+53 tests cover normalization, ranking, diet tags, substitutions, explanations, dataset consistency and the API.
 
 ## Reproduce the evaluation
 
@@ -71,6 +89,8 @@ The model gets only the retrieved facts (recipe title, your items, missing items
 
 ```
 app.py                 Streamlit UI (wiring only)
+src/api.py             FastAPI JSON layer for the React UI
+frontend/              React + Vite UI (src/components, src/styles)
 src/normalize.py       text -> canonical ingredient (cleaning, fuzzy match)
 src/rank.py            scoring formula, filters, baseline
 src/substitutions.py   substitution lookup
@@ -78,6 +98,6 @@ src/explain.py         "why" text (+ optional LLM)
 src/diet.py            dietary tags from ingredient words
 data/                  recipes.csv, vocab.csv, substitutions.csv
 scripts/               fetch_data.py, build_dataset.py, evaluate.py
-tests/                 40 unit tests
+tests/                 53 tests
 docs/                  report, outline, explain, eval, devlog
 ```

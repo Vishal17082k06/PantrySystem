@@ -6,7 +6,9 @@ Quick start: see [docs/README.md](docs/README.md).
 
 ```
 pip install -r requirements.txt
-streamlit run app.py
+cd frontend && npm install && npm run build && cd ..
+python -m uvicorn src.api:app --port 8000     # React UI at http://localhost:8000
+streamlit run app.py                           # or the original Streamlit UI
 python -m pytest
 ```
 

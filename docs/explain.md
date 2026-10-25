@@ -96,6 +96,27 @@ Loads the CSV into `{missing item: [options]}`. `suggest()` returns, for each mi
 
 Only wiring: sidebar inputs, call `parse_pantry` -> `rank` -> `suggest` -> `explain`, then draw cards. Loading is cached with `st.cache_resource` so the CSVs are read once.
 
+## `src/api.py`: the bridge to React
+
+A browser can't call Python functions directly, so FastAPI turns them into URLs:
+
+| Endpoint | Does |
+|---|---|
+| `POST /api/recommend` | takes the pantry + slider values, runs normalize -> rank -> substitutions -> explain, returns JSON |
+| `GET /api/suggest?q=chic` | autocomplete (prefix matches, most common first, then typo matches) |
+| `GET /api/starters` | the most common non-staple ingredients for quick-add buttons |
+| `GET /api/health` | recipe count (and whether the optional LLM is configured) |
+
+Pydantic (built into FastAPI) validates requests: a Strictness of 2 or an unknown diet gets HTTP 422. No ranking logic lives here.
+
+## `frontend/`: the React UI
+
+- `App.jsx` holds the state (shelf items, slider settings, results) and calls the API. Changes are **debounced** (wait 250 ms after the last change) and stale requests are **aborted**, so dragging a slider sends one request, not dozens.
+- `Shelf.jsx`: the input with autocomplete (an ARIA combobox: arrow keys, Enter, Escape all work) and the jars. The server tells us what each typed item became, so "chiken" shows as a *chicken* jar with a "Fixed the spelling" note.
+- `Controls.jsx`: the sliders (with plain-language readouts like "Up to 2 missing"), diet toggles, staples option.
+- `RecipeCard.jsx`: the jar gauge (fill = share of ingredients covered), have/assumed/missing groups, a substitution per missing item, an "I have it" button that adds the item to your shelf, a copy-shopping-list button, and the real recipe.
+- `styles/`: plain CSS. `tokens.css` holds the colour/type tokens; colour carries meaning (green = have, red = missing).
+
 ## `scripts/`
 
 - `fetch_data.py`: downloads a seeded random sample of recipes.

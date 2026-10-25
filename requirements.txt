@@ -2,7 +2,11 @@
 streamlit>=1.40      # st.pills needs 1.40+; tested on 1.66.1
 pandas>=2.0          # tested on 3.1.0
 rapidfuzz>=3.0       # tested on 3.14.6
+# API for the React frontend
+fastapi>=0.110     # tested on the latest at build time
+uvicorn>=0.29
 # Development
 pytest>=8.0
+httpx>=0.27         # FastAPI TestClient
 # Optional, only for the LLM-reworded explanations (PANTRY_LLM=1):
 # anthropic

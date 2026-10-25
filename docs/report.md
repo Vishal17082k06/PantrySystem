@@ -43,10 +43,12 @@ On the proxy task "recover the source recipe", the simple baseline is better, wh
 ## 4. Tech stack
 
 - **Python** (written for 3.11+, tested on 3.14.6)
-- **Streamlit**: UI
+- **React 18 + Vite**: main UI (plain CSS), served with the API by FastAPI
+- **FastAPI**: JSON API wrapping the ranking code
+- **Streamlit**: original UI, kept as a fallback
 - **pandas**: loading data
 - **rapidfuzz**: typo-tolerant ingredient matching
-- **pytest**: 40 unit tests
+- **pytest**: 53 tests
 - **Data:** seeded sample of the public `corbt/all-recipes` dataset (RecipeNLG-style), 1,596 recipes after cleaning
 - **Optional:** an LLM (Anthropic API) behind a flag for wording only
 
@@ -54,7 +56,7 @@ scikit-learn and sentence-transformers were considered and deliberately not used
 
 ## 5. Demo (software-only)
 
-1. Start the app (`streamlit run app.py`).
+1. Start the app (`python -m uvicorn src.api:app --port 8000`, then open http://localhost:8000).
 2. Type `chiken, rice, tomatos, onion, garlic` and note the spelling fixes shown under "Recognized pantry".
 3. Read one card: score, "why" line, You have / Missing, a substitution marked "(you have this)".
 4. Move **Strictness** to the right: results with many missing items disappear; at 1.0 only fully cookable recipes remain.

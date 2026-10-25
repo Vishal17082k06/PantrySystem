@@ -1,0 +1,219 @@
+.controls {
+  display: block;
+  padding: 22px 22px 24px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.controls__title {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+
+.controls__toggle {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+}
+
+.controls__summary,
+.controls__chev {
+  display: none;
+}
+
+.controls__body {
+  display: grid;
+  gap: 26px;
+  margin-top: 22px;
+}
+
+.controls__body[hidden] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .controls__toggle {
+    cursor: pointer;
+  }
+
+  .controls__summary {
+    display: block;
+    grid-row: 2;
+    color: var(--ink-soft);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+  }
+
+  .controls__chev {
+    display: block;
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    line-height: 28px;
+    text-align: center;
+  }
+}
+
+/* wide screens: always open, whatever the state says */
+@media (min-width: 901px) {
+  .controls__body[hidden] {
+    display: grid;
+  }
+}
+
+/* ---------- sliders ---------- */
+.slider__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.slider__label {
+  font-weight: 700;
+}
+
+.slider__readout {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--cobalt-deep);
+  background: var(--mist);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.slider__input {
+  --track: 8px;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.slider__input::-webkit-slider-runnable-track {
+  height: var(--track);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--cobalt) var(--pct), var(--mist) var(--pct));
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+.slider__input::-moz-range-track {
+  height: var(--track);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--cobalt) var(--pct), var(--mist) var(--pct));
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+.slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -9px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--saffron);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.slider__input::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--saffron);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.slider__ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 2px;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+}
+
+/* ---------- dietary toggles ---------- */
+.diets {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.diets__legend {
+  margin-bottom: 10px;
+  padding: 0;
+  font-weight: 700;
+}
+
+.diets__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.diet {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.diet:hover {
+  background: var(--mist);
+}
+
+.diet[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+}
+
+.diet[aria-pressed="true"]::before {
+  content: "✓ ";
+}
+
+.diets__hint {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.check input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--cobalt);
+}

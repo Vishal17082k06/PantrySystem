@@ -38,3 +38,20 @@
 | Web search (via Claude Code) | Checking public descriptions of competitor apps. |
 
 All code is intended to be explained line by line; `docs/explain.md` is the walkthrough. Review it and the code before presenting, since you are responsible for being able to defend every line.
+
+## React frontend (added later)
+
+| Decision | Choice | Why / trade-off |
+|---|---|---|
+| UI stack | React 18 + Vite, plain CSS, JS (not TypeScript) | Fewer concepts to explain; no UI kit or Tailwind. TypeScript would add safety at the cost of more to learn. |
+| Bridge | FastAPI wrapper (`src/api.py`) | Needed so the browser can reach the Python ranker; adds `fastapi`, `uvicorn`, `httpx` (tests). Streamlit app kept as a fallback. |
+| Visual identity | "Enamelware": cobalt/white tile, saffron, basil = have, tomato = missing; Bricolage Grotesque + Figtree + IBM Plex Mono | Chosen to avoid the common cream/terracotta food-site look. Fonts bundled locally so the demo works offline. |
+| Signature | Jar shelf for the pantry + jar-fill gauge per recipe | Makes "how well does this fit" readable at a glance; the only decorative motion (reduced-motion respected). |
+| Mobile | Controls collapse behind a summary line | Results are visible on the first screen. |
+
+Found by looking at screenshots (Playwright driving Edge, dev-only, not in requirements):
+1. Autocomplete returned arbitrary order, so typing "chic" then Enter picked *chickpea*. Fixed: most common ingredient first (test added first, red then green).
+2. The top bar stat wrapped badly on phones; the controls pushed results off the first screen. Both fixed.
+
+Not done: no automated frontend tests (checked by build + browser screenshots + manual interaction only); not tested in Safari/Firefox; dark mode not built (light theme only).
+Local note: port 8000 was occupied by an unrelated process on the dev machine, so it was verified on port 8010.

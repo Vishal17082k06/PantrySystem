@@ -1,0 +1,46 @@
+/* Design tokens: "enamelware" - cobalt and white kitchen enamel / Delft tile.
+   Colour carries meaning: basil = you have it, tomato = you're missing it. */
+:root {
+  color-scheme: light;
+
+  /* surfaces */
+  --tile: #f4f7f9;
+  --tile-grout: #dfe6ec;
+  --card: #ffffff;
+  --mist: #e8eef7;
+
+  /* ink + brand */
+  --ink: #12234a;
+  --ink-soft: #4a587a;
+  --cobalt: #2748d6;
+  --cobalt-deep: #1b34a3;
+  --saffron: #f5b82e;
+
+  /* meaning (fills / text variants chosen to pass contrast on white) */
+  --basil: #2e8b57;
+  --basil-text: #1f6b40;
+  --basil-wash: #e3f3ea;
+  --tomato: #e4452f;
+  --tomato-text: #b92f1b;
+  --tomato-wash: #fdeae6;
+
+  --line: #cdd7e4;
+  --focus: #2748d6;
+
+  /* type */
+  --font-display: "Bricolage Grotesque Variable", "Segoe UI", sans-serif;
+  --font-body: "Figtree Variable", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+
+  /* shape + space */
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow: 0 1px 0 rgb(18 35 74 / 6%), 0 8px 24px -12px rgb(18 35 74 / 18%);
+  --gutter: clamp(16px, 4vw, 40px);
+}

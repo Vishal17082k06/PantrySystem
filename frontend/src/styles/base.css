@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  color: var(--ink);
+  background-color: var(--tile);
+  /* faint tile grout lines, like a kitchen wall */
+  background-image:
+    linear-gradient(var(--tile-grout) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tile-grout) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: -1px -1px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 64px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1.5px solid var(--cobalt);
+  border-radius: 999px;
+  background: var(--cobalt);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btn:hover {
+  background: var(--cobalt-deep);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--cobalt);
+}
+
+.btn--ghost:hover {
+  background: var(--mist);
+}
+
+.btn--small {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: var(--step--1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
